@@ -1,2 +1,10 @@
-# daily_schedule
-Generates a random daily schedule with all your activities
+# Daily Planner
+
+Generates a random daily schedule with all your activities.
+
+Made with C++11.
+
+## How to compile:
+
+In the folder where you extracted or cloned the repository, execute the following command:
+``make``
