@@ -19,6 +19,8 @@ class Schedule {
         int get_duration();
         int get_start();
         int get_end();
+        std::vector<Activity*> get_activities();
+        void export_to_json(std::string path, std::string name);
 };
 
 #endif

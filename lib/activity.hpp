@@ -6,15 +6,14 @@
 //Class activity
 class Activity {
     private:
-        std::string title, description;
-        int duration;
+        std::string title, description, duration;
     public:
         //Constructor
-        Activity(std::string title, std::string description, int duration);
+        Activity(std::string title, std::string description, std::string duration);
         //Methods
         std::string get_title();
         std::string get_description();
-        int get_duration();
+        std::string get_duration();
 };
 
 #endif
