@@ -25,6 +25,9 @@ Schedule::Schedule(std::string path){
     duration = get_total_time();
 }
 
+//Class destructor
+Schedule::~Schedule() {}
+
 //Prints the title of each activity in the schedule
 void Schedule::print_schedule(){
     int index = 0;
@@ -108,6 +111,7 @@ void Schedule::import_schedule(std::string path){
     activities = read_activities(path);
 }
 
+//Gets the schedule total duration
 int Schedule::get_total_time(){
     int tt = 0;
 

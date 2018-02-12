@@ -16,6 +16,8 @@ class Schedule {
         //Constructor
         Schedule();
         Schedule(std::string path);
+        //Destructor
+        ~Schedule();
         //Methods
         void insert_activity(std::shared_ptr<Activity> activ);
         void print_schedule();

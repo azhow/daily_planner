@@ -2,6 +2,7 @@
 #define ACTIVITY_HPP
 
 #include <string>
+#include <memory>
 
 //Class activity
 class Activity {
