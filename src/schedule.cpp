@@ -3,22 +3,38 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <memory>
 
 //Class constructor empty class
 Schedule::Schedule()
-    : activities(), duration(0), start(0), end(0)
+    : activities(), duration(0), start("0000"), end("0000")
 {}
 
 //Class constructor that imports from JSON
-Schedule::Schedule(std::string path)
-    : activities(read_activities(path)), duration(get_total_time()), start(0), end(0)
-{}
+Schedule::Schedule(std::string path){
+    std::ifstream ifs(path);
+    nlohmann::json j;
+    ifs >> j;
+
+    for(auto x : j["activities"]){
+        std::shared_ptr<Activity> a(new Activity(x[0], x[1], x[2]));
+        insert_activity(a);
+    }
+    start = j["start"];
+    end = j["end"];
+    duration = get_total_time();
+}
 
 //Prints the title of each activity in the schedule
 void Schedule::print_schedule(){
     int index = 0;
-    for(auto& x : this->activities) {
-        std::cout << index << ": " << x->get_title() << std::endl;
+
+    std::cout << "Start: " << start << std::endl;
+    std::cout << "End: " << end << std::endl;
+    std::cout << "Duration: " << duration << std::endl;
+    std::cout << "Activities: " << std::endl;
+    for(auto x : activities) {
+        std::cout << "\t" << index << ": " << x->get_title() << std::endl;
         index++;
     }
 }
@@ -28,20 +44,29 @@ int Schedule::get_duration(){
     return duration;
 }
 
-int Schedule::get_start(){
+std::string Schedule::get_start(){
     return start;
 }
 
-int Schedule::get_end(){
+std::string Schedule::get_end(){
     return end;
 }
 
-std::vector<Activity*> Schedule::get_activities(){
+std::vector<std::shared_ptr<Activity>> Schedule::get_activities(){
     return activities;
 }
 
+//Setters
+void Schedule::set_start(int s){
+    start = s;
+}
+
+void Schedule::set_end(int e){
+    end = e;
+}
+
 //Inserts a activity on the list
-void Schedule::insert_activity(Activity* activ){
+void Schedule::insert_activity(std::shared_ptr<Activity> activ){
     activities.push_back(activ);
     //Updates the duration
     duration = get_total_time();
@@ -63,14 +88,14 @@ void Schedule::export_to_json(std::string path, std::string name){
 }
 
 //Read and generate a vector with the activities of a JSON file
-std::vector<Activity*> Schedule::read_activities(std::string path){
+std::vector<std::shared_ptr<Activity>> Schedule::read_activities(std::string path){
     std::ifstream ifs(path);
     nlohmann::json j;
-    std::vector<Activity*> v;
+    std::vector<std::shared_ptr<Activity>> v;
     ifs >> j;
 
     for(auto x : j["activities"]){
-        Activity *a = new Activity(x[0], x[1], x[2]);
+        std::shared_ptr<Activity> a(new Activity(x[0], x[1], x[2]));
         v.push_back(a);
     }
 

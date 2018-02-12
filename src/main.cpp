@@ -9,10 +9,9 @@
 
 int main(int argc, char** argv){
     //Creates empty schedule
-    Schedule *s = new Schedule("./r1.json");
+    Schedule *s = new Schedule(argv[1]);
 
     s->print_schedule();
-    std::cout << s->get_duration() << std::endl;
 
     return 0;
 }
