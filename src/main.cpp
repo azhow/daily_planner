@@ -10,6 +10,10 @@
 
 std::shared_ptr<Schedule> create_schedule(std::shared_ptr<Schedule> schedule);
 
+bool is_equal(std::shared_ptr<Activity> a, std::shared_ptr<Activity> b){
+    return a->get_title() == b->get_title() && a->get_duration() == b->get_duration();
+}
+
 int main(int argc, char** argv){
     //Creates empty schedule
     std::shared_ptr<Schedule> s(new Schedule());
@@ -17,6 +21,9 @@ int main(int argc, char** argv){
     std::shared_ptr<Activity> b(new Activity("tit", "des", "5"));
     std::shared_ptr<Activity> c(new Activity("t2it", "des", "5"));
 
+
+    std::cout << (a==b) << std::endl;
+    std::cout << (a==c) << std::endl;
     ///s->insert_activity(a);
 
     //s = create_schedule(s);

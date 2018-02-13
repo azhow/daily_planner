@@ -12,9 +12,10 @@ class Activity {
         //Constructor
         Activity(std::string title, std::string description, std::string duration);
         //Methods
-        std::string get_title();
-        std::string get_description();
-        std::string get_duration();
+        std::string get_title() const;
+        std::string get_description() const;
+        std::string get_duration() const;
+        bool operator==(const std::shared_ptr<Activity> &a) const;
 };
 
 #endif
