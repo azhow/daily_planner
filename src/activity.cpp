@@ -21,7 +21,5 @@ std::string Activity::get_duration() const{
 }
 
 bool Activity::operator==(const std::shared_ptr<Activity> &a) const{
-    std::cout << this->title << std::endl;
-    std::cout << a->get_title() << std::endl;
     return this->title == a->get_title() && this->duration == a->get_duration();
 }
