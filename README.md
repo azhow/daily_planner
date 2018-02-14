@@ -16,5 +16,6 @@ And then change directory to the bin folder and do the following:
 
 ## Dependencies:
 
-[JSON for Modern C++](https://github.com/nlohmann/json)
-[Boost library](http://www.boost.org/)
+* [JSON for Modern C++](https://github.com/nlohmann/json)
+
+* [Boost library](http://www.boost.org/)
