@@ -1,10 +1,7 @@
 #ifndef SCHEDULE_HPP
 #define SCHEDULE_HPP
 
-#include <string>
-#include <vector>
 #include "activity.hpp"
-#include <memory>
 
 //Class schedule
 class Schedule {

@@ -1,26 +1,17 @@
 // Daily planner but without repetition
 // Generates a random daily schedule with the activities on a json
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <memory>
-#include <boost/algorithm/string.hpp>    
-#include <json/json.hpp>
-#include "activity.hpp"
 #include "schedule.hpp"
+#include <iostream>
+#include <boost/algorithm/string.hpp>    
 
 std::shared_ptr<Schedule> create_schedule(std::shared_ptr<Schedule> schedule);
 
 int main(int argc, char** argv){
     //Creates empty schedule
     std::shared_ptr<Schedule> s(new Schedule());
-    std::shared_ptr<Activity> a(new Activity("tit", "des", "5"));
-    std::shared_ptr<Activity> b(new Activity("tit", "des", "5"));
-    std::shared_ptr<Activity> c(new Activity("t2it", "des", "5"));
 
     //std::cout << (*a==b) << std::endl;
     //std::cout << (*a==c) << std::endl;
-    ///s->insert_activity(a);
 
     s = create_schedule(s);
     s->print_schedule();
@@ -48,7 +39,7 @@ std::shared_ptr<Schedule> create_schedule(std::shared_ptr<Schedule> schedule){
         boost::algorithm::trim(des);
         boost::algorithm::trim(tit);
         boost::algorithm::trim(dur);
-        std::shared_ptr<Activity> a(new Activity(tit, des, dur));
+        std::shared_ptr<Activity> a(new Activity(tit, des, dur, {}));
         schedule->insert_activity(a);
     }
 

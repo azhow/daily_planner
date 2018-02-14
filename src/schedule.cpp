@@ -2,8 +2,6 @@
 #include <json/json.hpp>
 #include <iostream>
 #include <fstream>
-#include <vector>
-#include <memory>
 
 //Class constructor empty class
 Schedule::Schedule()
@@ -17,7 +15,7 @@ Schedule::Schedule(std::string path){
     ifs >> j;
 
     for(auto x : j["activities"]){
-        std::shared_ptr<Activity> a(new Activity(x[0], x[1], x[2]));
+        std::shared_ptr<Activity> a(new Activity(x[0], x[1], x[2], x[3]));
         insert_activity(a);
     }
     start = j["start"];
@@ -91,7 +89,7 @@ void Schedule::import_schedule(std::string path){
     ifs >> j;
 
     for(auto x : j["activities"]){
-        std::shared_ptr<Activity> a(new Activity(x[0], x[1], x[2]));
+        std::shared_ptr<Activity> a(new Activity(x[0], x[1], x[2], x[3]));
         activities.push_back(a);
     }
 }
