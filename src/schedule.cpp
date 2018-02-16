@@ -66,11 +66,11 @@ int Schedule::get_total_time() const{
 }
 
 //Setters
-void Schedule::set_start(int s){
+void Schedule::set_start(std::string s){
     start = s;
 }
 
-void Schedule::set_end(int e){
+void Schedule::set_end(std::string e){
     end = e;
 }
 
@@ -81,29 +81,24 @@ void Schedule::insert_activity(std::shared_ptr<Activity> activ){
     duration = get_total_time();
 }
 
-//Imports a schedule from a JSON file
-//~It overwrites the activities on the schedule~
-void Schedule::import_schedule(std::string path){
-    std::ifstream ifs(path);
-    nlohmann::json j;
-    ifs >> j;
+//Modifies an activity
+void modify_activity(std::string activ_title, std::string activ_duration, std::shared_ptr<Activity> activp = nullptr){
+}
 
-    for(auto x : j["activities"]){
-        std::shared_ptr<Activity> a(new Activity(x[0], x[1], x[2], x[3]));
-        activities.push_back(a);
-    }
+//Removes an activity
+void remove_activity(std::string activ_title, std::string activ_duration, std::shared_ptr<Activity> activp = nullptr){
 }
 
 //Exports the schedule to a JSON file
 void Schedule::export_to_json_file(std::string path) const{
-    std::ofstream out_file(path + ".json");
+    std::ofstream out_file(path);
     nlohmann::json j;
     std::vector<std::vector<std::string>> v;
     j["start"] = start;
     j["end"] = end;
 
     for(auto x : activities){
-        v.push_back({x->get_title(), x->get_description(), x->get_duration()});
+        v.push_back({x->get_title(), x->get_description(), x->get_duration(), x->get_tags()});
     }
 
     j["activities"] = v;

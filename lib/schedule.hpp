@@ -23,11 +23,12 @@ class Schedule {
         std::string get_end() const;
         std::vector<std::shared_ptr<Activity>> get_activities() const;
         //Setters
-        void set_start(int s);
-        void set_end(int e);
+        void set_start(std::string s);
+        void set_end(std::string e);
         //Methods
         void insert_activity(std::shared_ptr<Activity> activ);
-        void import_schedule(std::string path);
+        void modify_activity(std::string activ_title, std::string activ_duration, std::shared_ptr<Activity> activp = nullptr);
+        void remove_activity(std::string activ_title, std::string activ_duration, std::shared_ptr<Activity> activp = nullptr);
         void export_to_json_file(std::string path) const;
 };
 

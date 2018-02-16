@@ -8,16 +8,15 @@
 //Class activity
 class Activity {
     private:
-        std::string title, description, duration;
-        std::vector<std::string> tags;
+        std::string title, description, duration, tags;
     public:
         //Constructor
-        Activity(std::string title, std::string description, std::string duration, std::vector<std::string> tags);
+        Activity(std::string title, std::string description, std::string duration, std::string tags);
         //Methods
         std::string get_title() const;
         std::string get_description() const;
         std::string get_duration() const;
-        std::vector<std::string> get_tags() const;
+        std::string get_tags() const;
         bool operator==(const std::shared_ptr<Activity> &a) const;
 };
 

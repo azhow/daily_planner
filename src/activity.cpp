@@ -1,7 +1,7 @@
 //Activity class methods
 #include "activity.hpp"
 
-Activity::Activity(std::string title, std::string description, std::string duration, std::vector<std::string> tags)
+Activity::Activity(std::string title, std::string description, std::string duration, std::string tags)
     : title(title), description(description), duration(duration), tags(tags)
 {}
 
@@ -18,7 +18,7 @@ std::string Activity::get_duration() const{
     return duration;
 }
 
-std::vector<std::string> Activity::get_tags() const{
+std::string Activity::get_tags() const{
     return tags;
 }
 
